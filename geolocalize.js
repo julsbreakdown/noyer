@@ -1,6 +1,21 @@
+
+
+var x = document.getElementById("demo");
+function getLocation() {
+    if (navigator.geolocation) {
+        var lat, lon = navigator.geolocation.getCurrentPosition(showPosition);
+    } else {
+        x.innerHTML = "Geolocation is not supported by this browser.";
+    }
+}
+function showPosition(position) {
+    return position.coords.latitude, position.coords.longitude; 
+}
+
+
 // creating the view
 var view = new ol.View({
-  center: ol.proj.fromLonLat([5.8713, 45.6452]),
+  center: ol.proj.fromLonLat([lat, lon]),
   zoom: 19
 });
 
