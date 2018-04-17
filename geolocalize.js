@@ -57,7 +57,7 @@ geolocation.on('change', function() {
 
   addPosition(position, heading, m, speed);
 
-  var coords = position.getCoordinates();
+  var coords = positions.getCoordinates();
   var len = coords.length;
   if (len >= 2) {
     deltaMean = (coords[len - 1][3] - coords[0][3]) / (len - 1);
@@ -141,11 +141,11 @@ function updateView() {
   // interpolate position along positions LineString
   var c = positions.getCoordinateAtM(m, true);
   if (c) {
-    view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
+    //view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
     view.setRotation(-c[2]);
     marker.setPosition(c);
   }
 }
   geolocation.setTracking(true); // Start position tracking
-  // map.on('postcompose', updateView);
+  map.on('postcompose', updateView);
   map.render();
