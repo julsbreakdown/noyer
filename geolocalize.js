@@ -21,11 +21,6 @@ var map = new ol.Map({
 });
 
 
-navigator.geolocation.getCurrentPosition(function(pos) {
-  const coords = proj.fromLonLat([pos.coords.longitude, pos.coords.latitude]);
-  map.getView().animate({center: coords, zoom: 10});
-});
-
 // Geolocation marker
 var markerEl = document.getElementById('geolocation_marker');
 var marker = new ol.Overlay({
