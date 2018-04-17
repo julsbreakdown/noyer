@@ -141,7 +141,7 @@ function updateView() {
   // interpolate position along positions LineString
   var c = positions.getCoordinateAtM(m, true);
   if (c) {
-    //view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
+    view.setCenter(getCenterWithHeading(c, -c[2], view.getResolution()));
     view.setRotation(-c[2]);
     marker.setPosition(c);
   }
