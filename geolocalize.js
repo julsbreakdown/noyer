@@ -146,18 +146,6 @@ function updateView() {
     marker.setPosition(c);
   }
 }
-
-// geolocate device
-var geolocateBtn = document.getElementById('geolocate');
-geolocateBtn.addEventListener('click', function() {
   geolocation.setTracking(true); // Start position tracking
-
   map.on('postcompose', updateView);
   map.render();
-
-  disableButtons();
-}, false);
-
-function disableButtons() {
-  geolocateBtn.disabled = 'disabled';
-}
