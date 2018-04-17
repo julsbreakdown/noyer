@@ -57,7 +57,7 @@ geolocation.on('change', function() {
 
   addPosition(position, heading, m, speed);
 
-  var coords = positions.getCoordinates();
+  var coords = position.getCoordinates();
   var len = coords.length;
   if (len >= 2) {
     deltaMean = (coords[len - 1][3] - coords[0][3]) / (len - 1);
