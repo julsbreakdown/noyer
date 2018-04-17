@@ -147,5 +147,5 @@ function updateView() {
   }
 }
   geolocation.setTracking(true); // Start position tracking
-  map.on('postcompose', updateView);
+  // map.on('postcompose', updateView);
   map.render();
