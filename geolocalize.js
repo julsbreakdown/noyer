@@ -158,61 +158,6 @@ geolocateBtn.addEventListener('click', function() {
   disableButtons();
 }, false);
 
-// simulate device move
-var simulationData;
-var client = new XMLHttpRequest();
-client.open('GET', 'data/geolocation-orientation.json');
-
-
-/**
- * Handle data loading.
- */
-client.onload = function() {
-  simulationData = JSON.parse(client.responseText).data;
-};
-client.send();
-
-var simulateBtn = document.getElementById('simulate');
-simulateBtn.addEventListener('click', function() {
-  var coordinates = simulationData;
-
-  var first = coordinates.shift();
-  simulatePositionChange(first);
-
-  var prevDate = first.timestamp;
-  function geolocate() {
-    var position = coordinates.shift();
-    if (!position) {
-      return;
-    }
-    var newDate = position.timestamp;
-    simulatePositionChange(position);
-    window.setTimeout(function() {
-      prevDate = newDate;
-      geolocate();
-    }, (newDate - prevDate) / 0.5);
-  }
-  geolocate();
-
-  map.on('postcompose', updateView);
-  map.render();
-
-  disableButtons();
-}, false);
-
-function simulatePositionChange(position) {
-  var coords = position.coords;
-  geolocation.set('accuracy', coords.accuracy);
-  geolocation.set('heading', degToRad(coords.heading));
-  var position_ = [coords.longitude, coords.latitude];
-  var projectedPosition = ol.proj.transform(position_, 'EPSG:4326',
-      'EPSG:3857');
-  geolocation.set('position', projectedPosition);
-  geolocation.set('speed', coords.speed);
-  geolocation.changed();
-}
-
 function disableButtons() {
   geolocateBtn.disabled = 'disabled';
-  simulateBtn.disabled = 'disabled';
 }
