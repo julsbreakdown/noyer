@@ -114,9 +114,9 @@ function addPosition(position, heading, m, speed) {
 
   // FIXME use speed instead
   if (heading && speed) {
-    markerEl.src = 'data/geolocation_marker_heading.png';
+    markerEl.src = 'geolocation_marker_heading.png';
   } else {
-    markerEl.src = 'data/geolocation_marker.png';
+    markerEl.src = 'geolocation_marker.png';
   }
 }
 
