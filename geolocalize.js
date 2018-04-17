@@ -1,21 +1,6 @@
-
-
-var x = document.getElementById("demo");
-function getLocation() {
-    if (navigator.geolocation) {
-        var lat, lon = navigator.geolocation.getCurrentPosition(showPosition);
-    } else {
-        x.innerHTML = "Geolocation is not supported by this browser.";
-    }
-}
-function showPosition(position) {
-    return position.coords.latitude, position.coords.longitude; 
-}
-
-
 // creating the view
 var view = new ol.View({
-  center: ol.proj.fromLonLat([lat, lon]),
+  center: ol.proj.fromLonLat([0, 0]),
   zoom: 19
 });
 
@@ -33,6 +18,12 @@ var map = new ol.Map({
     }
   }),
   view: view
+});
+
+
+navigator.geolocation.getCurrentPosition(function(pos) {
+  const coords = proj.fromLonLat([pos.coords.longitude, pos.coords.latitude]);
+  map.getView().animate({center: coords, zoom: 10});
 });
 
 // Geolocation marker
