@@ -1,6 +1,6 @@
 // creating the view
 var view = new ol.View({
-  //center: ol.proj.fromLonLat([5.8713, 45.6452]),
+  center: ol.proj.fromLonLat([5.8713, 45.6452]),
   zoom: 19
 });
 
