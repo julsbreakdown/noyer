@@ -142,7 +142,12 @@ function getCenterWithHeading(position, rotation, resolution) {
 }
 
 var previousM = 0;
-function updateView() {
+
+function updateView(r) {
+  var checkbox = document.querySelector('input[type="checkbox"]');
+  if (!checkbox.checked){
+    return
+  }
   // use sampling period to get a smooth transition
   var m = Date.now() - deltaMean * 1.5;
   m = Math.max(m, previousM);
@@ -155,24 +160,4 @@ function updateView() {
     marker.setPosition(c);
   }
 }
-var checkbox = document.querySelector('input[type="checkbox"]');
 
-checkbox.addEventListener('change', function () {
-  if (checkbox.checked) {
-    // do this
-    console.log('Checked');
-    geolocation.setTracking(true); // Start position tracking
-    map.on('postcompose', updateView);
-    updateView()
-    map.render();
-  } else {
-    // do that
-    geolocation.setTracking(false); // Start position tracking
-    map.on('postcompose', function (e){
-      map.unByKey(e);
-    });
-  //  map.render();
-    console.log('Not checked');
-    map.render();
-  }
-});
