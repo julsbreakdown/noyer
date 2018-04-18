@@ -160,4 +160,7 @@ function updateView(r) {
     marker.setPosition(c);
   }
 }
+map.on('postcompose', updateView);	
+  updateView()	
+  map.render();
 
