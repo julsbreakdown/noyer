@@ -143,11 +143,7 @@ function getCenterWithHeading(position, rotation, resolution) {
 
 var previousM = 0;
 
-function updateView(r) {
-  var checkbox = document.querySelector('input[type="checkbox"]');
-  if (!checkbox.checked){
-    return
-  }
+function updateView() {
   // use sampling period to get a smooth transition
   var m = Date.now() - deltaMean * 1.5;
   m = Math.max(m, previousM);
@@ -161,6 +157,5 @@ function updateView(r) {
   }
 }
 map.on('postcompose', updateView);	
-  updateView()	
-  map.render();
+  
 
