@@ -3,30 +3,7 @@ var view = new ol.View({
   center: ol.proj.fromLonLat([5.9777, 45.3433]),
   zoom: 17
 });
-    <script>
-      var styles = [
-        'Road',
-        'RoadOnDemand',
-        'Aerial',
-        'AerialWithLabels',
-        'collinsBart',
-        'ordnanceSurvey'
-      ];
-      var layers = [];
-      var i, ii;
-      for (i = 0, ii = styles.length; i < ii; ++i) {
-        layers.push(new ol.layer.Tile({
-          visible: false,
-          preload: Infinity,
-          source: new ol.source.BingMaps({
-            key: 'Your Bing Maps Key from http://www.bingmapsportal.com/ here',
-            imagerySet: styles[i]
-            // use maxZoom 19 to see stretched tiles instead of the BingMaps
-            // "no photos at this zoom level" tiles
-            // maxZoom: 19
-          })
-        }));
-      }
+    
 var vector = new ol.layer.Vector({
       source: new ol.source.Vector({
       url: 'cadastres_nucci.kml',
